@@ -17,5 +17,8 @@
     "vite": "^6.3.5",
     "@tailwindcss/vite": "^4.1.10",
     "tailwindcss": "^4.1.10"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true
   }
 }
