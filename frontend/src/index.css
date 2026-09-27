@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+/*
+  DESIGN SYSTEM: Industrial Control-Room Aesthetic
+  ─────────────────────────────────────────────────
+  Dark base, amber/gold accent (#E5A51B — warm but distinct from terracotta),
+  monospace for numeric readouts, sans-serif for headings,
+  sharp/flat panels, no soft rounded cards.
+*/
+
+@theme {
+  /* ── Base Palette ── */
+  --color-surface-900: #0A0E14;
+  --color-surface-800: #111720;
+  --color-surface-700: #181F2B;
+  --color-surface-600: #1E2736;
+  --color-surface-500: #2A3444;
+  --color-surface-400: #3A4860;
+  --color-surface-300: #526280;
+
+  /* ── Accent — industrial amber/gold ── */
+  --color-accent-500: #E5A51B;
+  --color-accent-400: #F0BD4F;
+  --color-accent-600: #C48A0E;
+  --color-accent-glow: rgba(229, 165, 27, 0.15);
+
+  /* ── Status Colors ── */
+  --color-status-eligible: #22C55E;
+  --color-status-marginal: #EAB308;
+  --color-status-ineligible: #EF4444;
+
+  /* ── Text ── */
+  --color-text-primary: #E8ECF1;
+  --color-text-secondary: #8FA3BF;
+  --color-text-muted: #5C7090;
+
+  /* ── Typography ── */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ── Base Reset ── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-surface-900);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Panel — the primary container style (sharp, flat, no rounding) ── */
+.panel {
+  background: var(--color-surface-800);
+  border: 1px solid var(--color-surface-600);
+  padding: 1.5rem;
+}
+
+.panel-inset {
+  background: var(--color-surface-700);
+  border: 1px solid var(--color-surface-600);
+  padding: 1rem;
+}
+
+/* ── Section containers ── */
+.section-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.section-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--color-accent-500);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* ── Monospace readout for numbers ── */
+.readout {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Status badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-eligible {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--color-status-eligible);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.badge-marginal {
+  background: rgba(234, 179, 8, 0.15);
+  color: var(--color-status-marginal);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.badge-ineligible {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-status-ineligible);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ── Meter bar ── */
+.meter-track {
+  position: relative;
+  width: 100%;
+  height: 0.5rem;
+  background: var(--color-surface-600);
+  overflow: visible;
+}
+
+.meter-fill {
+  height: 100%;
+  transition: width 0.4s ease-out;
+}
+
+.meter-confidence {
+  position: absolute;
+  top: -2px;
+  height: calc(100% + 4px);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* ── Form controls ── */
+.control-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.375rem;
+}
+
+.control-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-surface-700);
+  border: 1px solid var(--color-surface-500);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.control-input:focus {
+  border-color: var(--color-accent-500);
+  box-shadow: 0 0 0 2px var(--color-accent-glow);
+}
+
+.control-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-surface-700);
+  border: 1px solid var(--color-surface-500);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238FA3BF' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+}
+
+.control-select:focus {
+  border-color: var(--color-accent-500);
+  box-shadow: 0 0 0 2px var(--color-accent-glow);
+}
+
+/* ── Range slider ── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--color-surface-500);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--color-accent-500);
+  border: 2px solid var(--color-surface-900);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--color-accent-500);
+  border: 2px solid var(--color-surface-900);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+/* ── Loading pulse ── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.loading-pulse {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* ── Error display ── */
+.error-banner {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--color-status-ineligible);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-500);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-400);
+}
