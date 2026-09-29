@@ -76,6 +76,12 @@ export default function InputPage() {
   const compSum = compEntries.reduce((s, [, v]) => s + v, 0);
   const isBalanced = Math.abs(compSum - 100) <= 0.5;
 
+  // Derive current site index from location state (controlled select)
+  const currentSiteIndex = SITE_PRESETS.findIndex(
+    (s) => s.lat === location.lat && s.lng === location.lng
+  );
+  const siteIndex = currentSiteIndex >= 0 ? currentSiteIndex : 0;
+
   return (
     <div className="page-container">
       {/* Header */}
@@ -261,7 +267,7 @@ export default function InputPage() {
             id="site-select"
             className="control-select mb-3"
             onChange={handleSiteChange}
-            defaultValue="0"
+            value={siteIndex}
           >
             {SITE_PRESETS.map((site, i) => (
               <option key={i} value={i}>
