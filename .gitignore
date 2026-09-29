@@ -1,4 +1,6 @@
+# ============================================================
 # Python
+# ============================================================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -8,27 +10,109 @@ env/
 venv/
 .venv/
 *.egg-info/
+*.egg
 dist/
 build/
-.pytest_cache/
+develop-eggs/
+eggs/
+sdist/
+wheels/
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Node
+# Python testing & coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+nosetests.xml
+
+# mypy / pyright / type checkers
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+pyrightconfig.json
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# ============================================================
+# Node / Frontend
+# ============================================================
 node_modules/
 frontend/dist/
 frontend/.vite/
+frontend/.turbo/
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
 
-# Environment
+# Vite
+*.local
+
+# ============================================================
+# Environment & Secrets
+# ============================================================
 .env
 .env.local
 .env.*.local
+.env.development
+.env.production
+*.pem
+*.key
+*.cert
 
-# IDE
+# ============================================================
+# IDE & Editors
+# ============================================================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+*.code-workspace
 
-# OS
+# ============================================================
+# OS Generated
+# ============================================================
 .DS_Store
+.DS_Store?
+._*
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ============================================================
+# Logs & Temp Files
+# ============================================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ============================================================
+# Misc
+# ============================================================
+*.bak
+*.tmp
+*.temp
+*.orig
+*.rej
+.cache/
