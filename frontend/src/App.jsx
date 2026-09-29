@@ -14,11 +14,8 @@ export default function App() {
     <WasteProvider>
       <div className="min-h-screen bg-slate-50 flex flex-col justify-between" style={{ backgroundColor: 'var(--color-surface-100)' }}>
         <div>
-          {/* Top fixed navigation bar */}
+          {/* Sticky navigation bar */}
           <Navbar />
-
-          {/* Spacer for fixed navbar */}
-          <div style={{ height: '4rem' }} />
 
           {/* Persistent industrial workflow stepper */}
           <WorkflowStepper />

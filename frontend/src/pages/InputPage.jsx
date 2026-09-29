@@ -134,7 +134,7 @@ export default function InputPage() {
                 key={type.id}
                 type="button"
                 onClick={() => handleWasteTypeChange(type.id)}
-                className={`p-3 rounded-lg border text-left transition-all ${
+                className={`stream-type-card p-3 rounded-lg border text-left transition-all ${
                   isSelected
                     ? 'bg-teal-50/70 border-teal-600 ring-2 ring-teal-600/20'
                     : 'bg-white border-slate-200 hover:border-slate-300'
@@ -165,7 +165,7 @@ export default function InputPage() {
       {/* Primary Parameters Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
         {/* Quantity (t/mo) */}
-        <div className="panel bg-white p-5">
+        <div className="panel metric-panel bg-white p-5">
           <div className="flex items-center justify-between mb-2">
             <label className="text-xs uppercase font-mono tracking-wider font-semibold text-slate-600" htmlFor="quantity-input">
               Generation Volume
@@ -208,7 +208,7 @@ export default function InputPage() {
         </div>
 
         {/* Moisture (%) */}
-        <div className="panel bg-white p-5">
+        <div className="panel metric-panel bg-white p-5">
           <div className="flex items-center justify-between mb-2">
             <label className="text-xs uppercase font-mono tracking-wider font-semibold text-slate-600" htmlFor="moisture-slider">
               Moisture Content
@@ -252,7 +252,7 @@ export default function InputPage() {
         </div>
 
         {/* Source Facility / Location */}
-        <div className="panel bg-white p-5">
+        <div className="panel metric-panel bg-white p-5">
           <label className="text-xs uppercase font-mono tracking-wider font-semibold text-slate-600 block mb-2" htmlFor="site-select">
             Facility Origin Site
           </label>
@@ -321,7 +321,7 @@ export default function InputPage() {
           {compEntries.map(([key, value]) => {
             const isSilicaGroup = ['SiO2', 'Al2O3', 'Fe2O3'].includes(key);
             return (
-              <div key={key} className="panel-inset bg-slate-50 border border-slate-200 p-3.5">
+              <div key={key} className="assay-card panel-inset bg-slate-50 border border-slate-200 p-3.5">
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-xs font-bold text-slate-800 font-mono">
                     {key}

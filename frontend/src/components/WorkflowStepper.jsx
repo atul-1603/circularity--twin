@@ -1,6 +1,4 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { useWaste } from '../lib/WasteContext';
-import { formatNumber } from '../lib/formatters';
 
 const STEPS = [
   { step: '1', path: '/', label: 'Stream Input', short: 'Input' },
@@ -12,18 +10,9 @@ const STEPS = [
 
 export default function WorkflowStepper() {
   const location = useLocation();
-  const { wasteStream } = useWaste();
 
   // Find current step index
   const currentIndex = STEPS.findIndex((s) => s.path === location.pathname);
-
-  // Waste type label
-  const wasteLabel =
-    wasteStream.waste_type === 'flyash'
-      ? 'Coal Fly Ash'
-      : wasteStream.waste_type === 'slag'
-      ? 'Blast Furnace Slag'
-      : 'Bauxite Tailings';
 
   return (
     <div
@@ -33,9 +22,9 @@ export default function WorkflowStepper() {
         borderColor: 'var(--color-surface-200)',
       }}
     >
-      <div className="max-w-[76rem] mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
-        {/* Step progression breadcrumbs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto py-1">
+      <div className="max-w-[76rem] mx-auto px-4 py-2 flex items-center justify-center">
+        {/* Centered Step progression breadcrumbs */}
+        <div className="flex items-center gap-1.5 overflow-x-auto py-0.5">
           {STEPS.map((s, idx) => {
             const isActive = location.pathname === s.path;
             const isPassed = currentIndex > idx;
@@ -66,35 +55,6 @@ export default function WorkflowStepper() {
               </div>
             );
           })}
-        </div>
-
-        {/* Current stream quick summary chip */}
-        <div
-          className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-xs"
-          style={{
-            background: 'var(--color-surface-100)',
-            borderColor: 'var(--color-surface-200)',
-            fontFamily: 'var(--font-mono)',
-          }}
-        >
-          <span
-            style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: 'var(--color-status-eligible)',
-              display: 'inline-block',
-            }}
-          />
-          <span className="font-semibold text-slate-800">{wasteLabel}</span>
-          <span style={{ color: 'var(--color-surface-400)' }}>|</span>
-          <span style={{ color: 'var(--color-accent-700)' }}>
-            {formatNumber(wasteStream.quantity_tpm, 0)} t/mo
-          </span>
-          <span style={{ color: 'var(--color-surface-400)' }}>|</span>
-          <span style={{ color: 'var(--color-text-secondary)' }}>
-            {wasteStream.moisture_pct.toFixed(1)}% H₂O
-          </span>
         </div>
       </div>
     </div>

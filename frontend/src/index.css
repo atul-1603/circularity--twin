@@ -482,3 +482,120 @@ input[type="range"]::-moz-range-thumb {
   color: #FFFFFF;
 }
 
+/* Component polish: preserve the white industrial language while adding depth. */
+.logo-mark {
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: -45%;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.42) 50%, transparent 62%);
+  transform: translateX(-70%) rotate(12deg);
+  animation: logo-sheen 5s ease-in-out infinite;
+}
+
+@keyframes logo-sheen {
+  0%, 55% { transform: translateX(-70%) rotate(12deg); }
+  75%, 100% { transform: translateX(70%) rotate(12deg); }
+}
+
+.page-container > .flex:first-child {
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.page-container > .flex:first-child::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 4.5rem;
+  height: 3px;
+  border-radius: 99px;
+  background: var(--color-accent-500);
+}
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(20,184,166,.28), transparent);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.panel:hover {
+  transform: translateY(-2px);
+}
+
+.panel:hover::before { opacity: 1; }
+
+.stream-type-card {
+  position: relative;
+  min-height: 6.4rem;
+  overflow: hidden;
+}
+
+.stream-type-card::after {
+  content: '';
+  position: absolute;
+  width: 4.5rem;
+  height: 4.5rem;
+  right: -1.6rem;
+  bottom: -2rem;
+  border-radius: 50%;
+  background: var(--color-accent-glow);
+  transition: transform .25s ease;
+}
+
+.stream-type-card:hover::after,
+.stream-type-card:focus-visible::after { transform: scale(1.7); }
+
+.stream-type-card:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.nav-link:focus-visible,
+.step-chip:focus-visible {
+  outline: 3px solid rgba(20,184,166,.25);
+  outline-offset: 2px;
+}
+
+.metric-panel {
+  min-height: 10.75rem;
+}
+
+.metric-panel label::before {
+  content: '●';
+  color: var(--color-accent-500);
+  font-size: .5rem;
+  margin-right: .4rem;
+  vertical-align: .1rem;
+}
+
+.assay-card {
+  transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
+}
+
+.assay-card:hover {
+  border-color: var(--color-accent-400) !important;
+  background-color: var(--color-accent-50) !important;
+  transform: translateY(-2px);
+}
+
+.meter-fill,
+.meter-confidence { transition: width .6s cubic-bezier(.2,.8,.2,1); }
+
+@media (max-width: 900px) {
+  .nav-link { padding-left: .65rem; padding-right: .65rem; }
+}
+
